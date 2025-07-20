@@ -1,0 +1,462 @@
+/* ========== BASE STYLES.CSS - KORRIGIERTE VERSION ========== */
+/* Diese Datei enthält nur Layout, Größen, Abstände, Schriften - keine Farben! */
+
+/* ========== GLOBAL LAYOUT ========== */
+QMainWindow {
+    font-family: "Segoe UI", "Ubuntu", "Cantarell", sans-serif;
+    font-size: 13px;
+}
+
+/* ========== SIDEBAR LAYOUT ========== */
+QFrame#sidebar {
+    padding: 0px;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+QFrame#sidebarHeader {
+    border-radius: 6px;
+    padding: 0px;
+    margin: 0px;
+    background-color: transparent;
+}
+
+QLabel#appTitle {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+QLabel#appSubtitle {
+    font-size: 12px;
+    background-color: transparent;
+}
+
+/* ========== SEARCH BOX ========== */
+QLineEdit#searchBox {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    border: 1px solid black;
+    background-color: transparent;
+}
+
+QLineEdit#searchBox:focus {
+    outline: none;
+}
+
+/* ========== SECTION HEADERS ========== */
+QLabel#sectionTitle {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 8px 0px 4px 0px;
+    background-color: transparent;
+}
+
+/* ========== CATEGORIES LIST ========== */
+QListWidget#categoriesList {
+    border-radius: 4px;
+    padding: 2px;
+    outline: none;
+    border: 1px solid black;
+}
+
+QListWidget#categoriesList::item {
+    padding: 5px 10px 5px 10px;
+    border-radius: 3px;
+    margin: 1px;
+    border: none;
+}
+
+/* ========== BUTTONS ========== */
+QPushButton#primaryButton {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    border: 1px solid black;
+}
+
+QPushButton#secondaryButton {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 13px;
+    border: 1px solid black;
+}
+
+QPushButton#successButton {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    border: 1px solid black;
+}
+
+QPushButton#dangerButton {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    border: 1px solid black;
+}
+
+/* ========== STATUS Widget ========== */
+QLabel#statusTitle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    background-color: transparent;
+}
+
+QFrame#statusContainer {
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid black;
+}
+
+/* ========== STATUS ITEMS ========== */
+QLabel#statusIcon {
+    font-size: 14px;
+    min-width: 20px;
+    max-width: 20px;
+    background-color: transparent;
+}
+
+QLabel#statusLabel {
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 80px;
+    background-color: transparent;
+}
+
+QLabel#statusValue {
+    font-size: 12px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+/* ========== QUICK ACTIONS ========== */
+QLabel#quickActionsTitle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    background-color: transparent;
+}
+
+QFrame#actionsContainer {
+    border-radius: 6px;
+    padding: 12px;
+    border: 1px solid black;
+}
+
+QLabel#infoLabel {
+    font-size: 12px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+QLabel#infoValue {
+    font-size: 12px;
+    background-color: transparent;
+}
+
+
+/* ========== STATUS BAR ========== */
+QStatusBar {
+    padding: 4px;
+    border-top: 1px solid black;
+    background-color: transparent;
+}
+
+QStatusBar QLabel {
+    background-color: transparent;
+    padding-left: 10px;
+}
+
+/* ========== TAB WIDGET ========== */
+QTabWidget#mainTabs::pane {
+    border: 1px solid black;
+    background-color: transparent;
+    border-top-left-radius: 4px;
+}
+
+QTabWidget#mainTabs QTabBar::tab {
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    border: 1px solid black;
+    margin: 5px 5px 5px 0px;
+}
+
+/* ========== CATEGORY HEADER ========== */
+QFrame#categoryHeader {
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 2px;
+    margin: 0px;
+    background-color: transparent;
+}
+
+QLabel#categoryTitle {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+QLabel#countBadge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border: none;
+}
+
+QLabel#categoryDescription {
+    font-size: 14px;
+    background-color: transparent;
+}
+
+/* ========== CONTROL PANEL ========== */
+QFrame#controlPanel {
+    border-radius: 6px;
+    border: 1px solid black;
+}
+
+QPushButton#selectionButton {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 80px;
+    border: 1px solid black;
+}
+
+QLabel#selectionStats {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+QPushButton#gridViewButton,
+QPushButton#listViewButton {
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    min-width: 80px;
+    border: 1px solid black;
+}
+
+QPushButton#executeSelectedButton {
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 180px;
+    border: 1px solid black;
+}
+
+/* ========== TOOL CARDS ========== */
+QWidget#toolCard {
+    border-radius: 6px;
+    margin: 0px;
+    border: 1px solid black;
+    background-color: transparent;
+}
+
+QLabel#toolTitle {
+    font-size: 14px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+QLabel#toolDescription {
+    font-size: 12px;
+    background-color: transparent;
+}
+
+QLabel#commandPreview {
+    font-size: 10px;
+    font-family: "Consolas", "Monaco", monospace;
+    padding: 4px 6px;
+    border-radius: 3px;
+}
+
+QLabel#toolTag {
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 500;
+    border: 1px solid;
+}
+
+QLabel#moreTagsLabel {
+    font-size: 10px;
+    font-weight: 500;
+    background-color: transparent;
+}
+
+QLabel#categoryLabel {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+QPushButton#executeButton {
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 12px;
+    background-color: red;
+}
+
+/* ========== CHECKBOXES ========== */
+QCheckBox#toolCheckbox {
+    border: none;
+}
+
+QCheckBox#toolCheckbox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+/* ========== HISTORY TABLE ========== */
+QTableWidget#historyTable {
+    border-radius: 6px;
+    gridline-color: transparent;
+    border: 1px solid black;
+}
+
+QTableWidget#historyTable::item {
+    padding: 8px;
+    border: none;
+}
+
+QHeaderView::section {
+    border: none;
+    padding: 8px 12px;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+}
+
+/* ========== SCROLL AREAS ========== */
+QScrollArea#toolsScrollArea {
+    border: none;
+}
+
+/* ========== SCROLLBARS ========== */
+QScrollBar:vertical {
+    width: 12px;
+    border-radius: 6px;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    border-radius: 6px;
+    min-height: 20px;
+    margin: 2px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    border: none;
+    background: none;
+}
+
+QScrollBar:horizontal {
+    height: 12px;
+    border-radius: 6px;
+    border: none;
+}
+
+QScrollBar::handle:horizontal {
+    border-radius: 6px;
+    min-width: 20px;
+    margin: 2px;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    border: none;
+    background: none;
+}
+
+/* ========== PROGRESS BAR ========== */
+QProgressBar {
+    border-radius: 4px;
+    font-size: 11px;
+    border: 1px solid black;
+}
+
+QProgressBar::chunk {
+    border-radius: 3px;
+}
+
+/* ========== SEARCH RESULTS ========== */
+QFrame#searchHeader {
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid black;
+}
+
+QFrame#searchResult {
+    border-radius: 6px;
+    padding: 12px;
+    margin: 4px 0px;
+    border: 1px solid black;
+}
+
+QFrame#searchResult QLabel {
+    background-color: transparent;
+}
+
+QFrame#noResults {
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid black;
+}
+
+QFrame#noResults QLabel {
+    background-color: transparent;
+}
+
+/* ========== OUTPUT WIDGET ========== */
+QFrame#outputHeader {
+    padding: 8px 16px;
+    border-bottom: 1px solid black;
+}
+
+QFrame#outputHeader QLabel {
+    background-color: transparent;
+}
+
+QTabWidget#outputTabs::pane {
+    border: none;
+}
+
+QTabWidget#outputTabs QTabBar::tab {
+    border: none;
+    padding: 8px 16px;
+    margin-right: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+QTextEdit#output_combined,
+QTextEdit#output_stdout,
+QTextEdit#output_stderr {
+    border: none;
+    padding: 8px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 11px;
+}
+
+/* ========== TOOLTIPS ========== */
+QToolTip {
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border: 1px solid black;
+}

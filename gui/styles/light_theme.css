@@ -1,0 +1,461 @@
+/* ========== LIGHT THEME.CSS ========== */
+/* Nur Farben - alle Größen und Layouts bleiben unverändert */
+
+/* ========== GLOBAL COLORS ========== */
+QMainWindow {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+}
+
+/* ========== SIDEBAR COLORS ========== */
+QFrame#sidebar {
+    background-color: #F8F9FA;
+    border-right: 1px solid #E5E5E5;
+}
+
+QFrame#sidebarHeader {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+}
+
+QLabel#appTitle {
+    color: #1A1A1A;
+}
+
+QLabel#appSubtitle {
+    color: #6B7280;
+}
+
+/* ========== SEARCH BOX COLORS ========== */
+QLineEdit#searchBox {
+    background-color: #FFFFFF;
+    border-color: #D1D5DB;
+    color: #1A1A1A;
+}
+
+QLineEdit#searchBox:focus {
+    border-color: #3B82F6;
+    background-color: #FFFFFF;
+}
+
+/* ========== SECTION HEADERS COLORS ========== */
+QLabel#sectionTitle {
+    color: #374151;
+}
+
+/* ========== CATEGORIES LIST COLORS ========== */
+QListWidget#categoriesList {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+    color: #1A1A1A;
+}
+
+QListWidget#categoriesList::item {
+    color: #374151;
+    background-color: transparent;
+}
+
+QListWidget#categoriesList::item:selected {
+    background-color: #EBF4FF;
+    color: #1E40AF;
+}
+
+QListWidget#categoriesList::item:hover {
+    background-color: #F3F4F6;
+}
+
+/* ========== BUTTONS COLORS ========== */
+QPushButton#primaryButton {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border-color: #3B82F6;
+}
+
+QPushButton#primaryButton:hover {
+    background-color: #2563EB;
+    border-color: #2563EB;
+}
+
+QPushButton#primaryButton:pressed {
+    background-color: #1D4ED8;
+}
+
+QPushButton#secondaryButton {
+    background-color: #FFFFFF;
+    color: #374151;
+    border-color: #D1D5DB;
+}
+
+QPushButton#secondaryButton:hover {
+    background-color: #F9FAFB;
+    border-color: #9CA3AF;
+}
+
+QPushButton#successButton {
+    background-color: #10B981;
+    color: #FFFFFF;
+    border-color: #10B981;
+}
+
+QPushButton#successButton:hover {
+    background-color: #059669;
+}
+
+QPushButton#dangerButton {
+    background-color: #EF4444;
+    color: #FFFFFF;
+    border-color: #EF4444;
+}
+
+QPushButton#dangerButton:hover {
+    background-color: #DC2626;
+}
+
+/* ========== STATUS WIDGET COLORS ========== */
+QLabel#statusTitle {
+    color: #1A1A1A;
+}
+
+QFrame#statusContainer {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QLabel#statusIcon {
+    color: #6B7280;
+}
+
+QLabel#statusLabel {
+    color: #374151;
+}
+
+QLabel#statusValue {
+    color: #1A1A1A;
+}
+
+QLabel#statusValue[statusType="success"] {
+    color: #059669;
+}
+
+QLabel#statusValue[statusType="error"] {
+    color: #DC2626;
+}
+
+QLabel#statusValue[statusType="warning"] {
+    color: #D97706;
+}
+
+QLabel#statusValue[statusType="info"] {
+    color: #2563EB;
+}
+
+
+/* ========== QUICK ACTIONS COLORS ========== */
+QLabel#quickActionsTitle {
+    color: #1A1A1A;
+}
+
+QFrame#actionsContainer {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QLabel#infoLabel {
+    color: #374151;
+}
+
+QLabel#infoValue {
+    color: #6B7280;
+}
+
+/* ========== STATUS BAR COLORS ========== */
+QStatusBar {
+    background-color: #F8F9FA;
+    border-color: #E5E5E5;
+    color: #6B7280;
+}
+
+QStatusBar QLabel {
+    color: #6B7280;
+}
+
+/* ========== TAB WIDGET COLORS ========== */
+QTabWidget#mainTabs::pane {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QTabWidget#mainTabs QTabBar::tab {
+    background-color: #F8F9FA;
+    color: #6B7280;
+    border-color: #E5E5E5;
+}
+
+QTabWidget#mainTabs QTabBar::tab:selected {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    border-color: #3B82F6;
+}
+
+QTabWidget#mainTabs QTabBar::tab:hover {
+    background-color: #F3F4F6;
+    color: #374151;
+}
+
+/* ========== CATEGORY HEADER COLORS ========== */
+QFrame#categoryHeader {
+    background-color: #F8F9FA;
+    border-color: #E5E5E5;
+}
+
+QLabel#categoryTitle {
+    color: #1A1A1A;
+}
+
+QLabel#countBadge {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+}
+
+QLabel#categoryDescription {
+    color: #6B7280;
+}
+
+/* ========== CONTROL PANEL COLORS ========== */
+QFrame#controlPanel {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QPushButton#selectionButton {
+    background-color: #F8F9FA;
+    color: #374151;
+    border-color: #D1D5DB;
+}
+
+QPushButton#selectionButton:hover {
+    background-color: #F3F4F6;
+    border-color: #9CA3AF;
+}
+
+QLabel#selectionStats {
+    color: #6B7280;
+    border-color: #E5E5E5;
+}
+
+QPushButton#gridViewButton,
+QPushButton#listViewButton {
+    background-color: #F8F9FA;
+    color: #6B7280;
+    border-color: #D1D5DB;
+}
+
+QPushButton#gridViewButton:checked,
+QPushButton#listViewButton:checked {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border-color: #3B82F6;
+}
+
+QPushButton#gridViewButton:hover,
+QPushButton#listViewButton:hover {
+    background-color: #F3F4F6;
+    border-color: #9CA3AF;
+}
+
+QPushButton#executeSelectedButton {
+    background-color: #10B981;
+    color: #FFFFFF;
+    border-color: #10B981;
+}
+
+QPushButton#executeSelectedButton:hover {
+    background-color: #059669;
+}
+
+QPushButton#executeSelectedButton:disabled {
+    background-color: #D1D5DB;
+    color: #9CA3AF;
+    border-color: #D1D5DB;
+}
+
+/* ========== TOOL CARDS COLORS ========== */
+QFrame#toolCard {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QFrame#toolCard:hover {
+    border-color: #3B82F6;
+    background-color: #FAFBFF;
+}
+
+QLabel#toolTitle {
+    color: #1A1A1A;
+    border-color: #E5E5E5;
+}
+
+QLabel#toolDescription {
+    color: #6B7280;
+    border-color: #E5E5E5;
+}
+
+QLabel#commandPreview {
+    background-color: #F8F9FA;
+    color: #374151;
+    border-color: #E5E5E5;
+}
+
+QLabel#toolTag {
+    background-color: #EBF4FF;
+    color: #1E40AF;
+    border-color: #DBEAFE;
+}
+
+QLabel#moreTagsLabel {
+    color: #9CA3AF;
+}
+
+QLabel#categoryLabel {
+    color: #6B7280;
+}
+
+QPushButton#executeButton {
+    background-color: #10B981;
+    color: #FFFFFF;
+    border-color: #10B981;
+}
+
+QPushButton#executeButton:hover {
+    background-color: #059669;
+}
+
+/* ========== CHECKBOXES COLORS ========== */
+QCheckBox#toolCheckbox {
+    color: #374151;
+}
+
+QCheckBox#toolCheckbox::indicator {
+    background-color: #FFFFFF;
+    border-color: #D1D5DB;
+}
+
+QCheckBox#toolCheckbox::indicator:checked {
+    background-color: #3B82F6;
+    border-color: #3B82F6;
+}
+
+QCheckBox#toolCheckbox::indicator:hover {
+    border-color: #9CA3AF;
+}
+
+/* ========== HISTORY TABLE COLORS ========== */
+QTableWidget#historyTable {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    border-color: #E5E5E5;
+    alternate-background-color: #F8F9FA;
+}
+
+QTableWidget#historyTable::item:selected {
+    background-color: #EBF4FF;
+    color: #1E40AF;
+}
+
+QHeaderView::section {
+    background-color: #F8F9FA;
+    color: #374151;
+    border-color: #E5E5E5;
+}
+
+/* ========== SCROLL AREAS COLORS ========== */
+QScrollArea#toolsScrollArea {
+    background-color: transparent;
+}
+
+/* ========== SCROLLBARS COLORS ========== */
+QScrollBar:vertical {
+    background-color: #F8F9FA;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #D1D5DB;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #9CA3AF;
+}
+
+QScrollBar:horizontal {
+    background-color: #F8F9FA;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #D1D5DB;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #9CA3AF;
+}
+
+/* ========== PROGRESS BAR COLORS ========== */
+QProgressBar {
+    background-color: #F8F9FA;
+    color: #374151;
+    border-color: #E5E5E5;
+}
+
+QProgressBar::chunk {
+    background-color: #3B82F6;
+}
+
+/* ========== SEARCH RESULTS COLORS ========== */
+QFrame#searchHeader {
+    background-color: #F8F9FA;
+    border-color: #E5E5E5;
+}
+
+QFrame#searchResult {
+    background-color: #FFFFFF;
+    border-color: #E5E5E5;
+}
+
+QFrame#searchResult:hover {
+    background-color: #F8F9FA;
+    border-color: #3B82F6;
+}
+
+QFrame#noResults {
+    background-color: #FFFBEB;
+    border-color: #FDE68A;
+}
+
+/* ========== OUTPUT WIDGET COLORS ========== */
+QFrame#outputHeader {
+    background-color: #F8F9FA;
+    border-color: #E5E5E5;
+}
+
+QTabWidget#outputTabs QTabBar::tab {
+    background-color: #F8F9FA;
+    color: #6B7280;
+}
+
+QTabWidget#outputTabs QTabBar::tab:selected {
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+}
+
+QTextEdit#output_combined,
+QTextEdit#output_stdout,
+QTextEdit#output_stderr {
+    background-color: #1A1A1A;
+    color: #E5E5E5;
+}
+
+/* ========== TOOLTIPS COLORS ========== */
+QToolTip {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    border-color: #374151;
+}

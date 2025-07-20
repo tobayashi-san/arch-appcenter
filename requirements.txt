@@ -1,0 +1,19 @@
+# Arch Config Tool - Simplified Requirements
+# Minimal dependencies for core functionality
+
+# GUI Framework
+PyQt6>=6.5.0
+
+# HTTP Requests for GitHub config download
+requests>=2.31.0
+
+# YAML parsing for configuration files
+PyYAML>=6.0
+
+# Optional: JSON schema validation (removed from core, but available if needed)
+# jsonschema>=4.0.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
