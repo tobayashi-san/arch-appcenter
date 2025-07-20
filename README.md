@@ -49,11 +49,9 @@ python main.py
 ## 🗑️ Uninstallation
 
 ```bash
-# If installed via installer
-arch-appcenter-uninstall
-
-# Or online uninstaller
+#online uninstaller
 curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh -o uninstall.sh
+chmod +x uninstall.sh
 ./uninstall.sh
 ```
 
