@@ -43,7 +43,7 @@ class ConfigCategory:
 
 class ConfigManager:
     def __init__(self, github_url: str = None, cache_path: str = "data/config_cache.yaml"):
-        self.github_url = github_url or "https://raw.githubusercontent.com/tobayashi-san/arch-helper-tool/refs/heads/main/config.yaml"
+        self.github_url = github_url or "https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/refs/heads/main/config.yaml"
         self.cache_path = cache_path
         self.cache_max_age = timedelta(hours=24)
 
