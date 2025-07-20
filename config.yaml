@@ -19,12 +19,6 @@ categories:
         tags: ["update", "system", "pacman"]
         safety: "high"
 
-      - name: "Clean Package Cache"
-        description: "Remove old cached packages to free disk space"
-        command: "sudo pacman -Sc --noconfirm"
-        tags: ["cleanup", "cache", "disk-space"]
-        safety: "medium"
-
       - name: "Remove Orphans"
         description: "Remove orphaned packages that are no longer needed"
         command: "sudo pacman -Rns $(pacman -Qtdq) --noconfirm || echo 'No orphaned packages found'"
@@ -37,24 +31,7 @@ categories:
         tags: ["mirrors", "optimization", "speed"]
         requires: ["reflector"]
         safety: "low"
-
-      - name: "Clear System Logs"
-        description: "Clear old systemd journal logs to free space"
-        command: "sudo journalctl --vacuum-time=7d"
-        tags: ["cleanup", "logs", "systemd"]
-        safety: "medium"
-
-      - name: "Refresh Package Database"
-        description: "Update package database without upgrading packages"
-        command: "sudo pacman -Sy"
-        tags: ["update", "database", "refresh"]
-        safety: "high"
-
-      - name: "Check System Health"
-        description: "Run comprehensive system health checks"
-        command: "sudo pacman -Dk && sudo pacman -Qk 2>/dev/null | grep -v ' 0 missing files' || echo 'System integrity check completed'"
-        tags: ["check", "health", "integrity"]
-        safety: "high"
+        
 
   graphics:
     name: "Graphics Drivers"
@@ -91,13 +68,6 @@ categories:
         requires: ["intel-hardware"]
         safety: "medium"
 
-      - name: "NVIDIA CUDA"
-        description: "NVIDIA CUDA toolkit for GPU computing"
-        command: "sudo pacman -S --noconfirm cuda cudnn"
-        tags: ["nvidia", "cuda", "gpu-computing", "ai"]
-        requires: ["nvidia-hardware"]
-        safety: "low"
-
   development:
     name: "Development Tools"
     description: "Essential development and programming tools"
@@ -107,14 +77,14 @@ categories:
     tools:
       - name: "Visual Studio Code"
         description: "Popular code editor from Microsoft"
-        command: "paru -S --noconfirm visual-studio-code-bin"
+        command: "flatpak install -y flathub com.visualstudio.code"
         tags: ["editor", "ide", "microsoft"]
-        requires: ["aur-helper"]
+        requires: ["flatpak"]
         safety: "high"
 
       - name: "Docker"
         description: "Container platform for development and deployment"
-        command: "sudo pacman -S --noconfirm docker docker-compose docker-buildx && sudo systemctl enable docker && sudo usermod -aG docker $USER"
+        command: "sudo pacman -S --noconfirm docker docker-compose && sudo systemctl enable docker && sudo usermod -aG docker $USER"
         tags: ["docker", "containers", "devops"]
         safety: "medium"
 
@@ -122,24 +92,6 @@ categories:
         description: "Python interpreter and development tools"
         command: "sudo pacman -S --noconfirm python python-pip python-virtualenv python-poetry ipython jupyter-notebook"
         tags: ["python", "pip", "development", "jupyter"]
-        safety: "high"
-
-      - name: "Node.js Development"
-        description: "Node.js runtime and package managers"
-        command: "sudo pacman -S --noconfirm nodejs npm yarn"
-        tags: ["nodejs", "npm", "yarn", "javascript"]
-        safety: "high"
-
-      - name: "Rust Development"
-        description: "Rust programming language and tools"
-        command: "sudo pacman -S --noconfirm rustup && rustup default stable"
-        tags: ["rust", "cargo", "programming"]
-        safety: "high"
-
-      - name: "Git & Development Tools"
-        description: "Git version control and essential development utilities"
-        command: "sudo pacman -S --noconfirm git git-lfs github-cli base-devel cmake ninja meson"
-        tags: ["git", "vcs", "build-tools"]
         safety: "high"
 
       - name: "Virtual Machine Setup"
@@ -157,13 +109,14 @@ categories:
     tools:
       - name: "VLC Media Player"
         description: "Versatile multimedia player that plays most formats"
-        command: "sudo pacman -S --noconfirm vlc"
+        command: "flatpak install -y flathub org.videolan.VLC"
         tags: ["video", "audio", "player", "codec"]
+        requires: ["flatpak"]
         safety: "high"
 
       - name: "GIMP"
         description: "GNU Image Manipulation Program for photo editing"
-        command: "sudo pacman -S --noconfirm gimp gimp-help-en"
+        command: "sudo pacman -S --noconfirm gimp"
         tags: ["image", "photo", "editing", "graphics"]
         safety: "high"
 
@@ -251,13 +204,7 @@ categories:
         command: "sudo pacman -S --noconfirm gamemode lib32-gamemode gamescope mangohud lib32-mangohud"
         tags: ["gaming", "performance", "gamemode", "mangohud"]
         safety: "medium"
-
-      - name: "RetroArch"
-        description: "Multi-platform emulator frontend"
-        command: "sudo pacman -S --noconfirm retroarch retroarch-assets-ozone retroarch-assets-xmb"
-        tags: ["emulation", "retro", "gaming"]
-        safety: "high"
-
+        
   productivity:
     name: "Productivity"
     description: "Office applications and productivity tools"
@@ -337,12 +284,6 @@ categories:
         tags: ["privacy", "anonymity", "tor", "browser"]
         safety: "high"
 
-      - name: "ClamAV Antivirus"
-        description: "Open-source antivirus scanner"
-        command: "sudo pacman -S --noconfirm clamav clamtk && sudo freshclam"
-        tags: ["antivirus", "security", "scanner"]
-        safety: "medium"
-
   package_managers:
     name: "Package Managers"
     description: "AUR helpers and package management tools"
@@ -352,7 +293,7 @@ categories:
     tools:
       - name: "Setup Flatpak"
         description: "Install Flatpak and add Flathub repository"
-        command: "sudo pacman -S --noconfirm flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+        command: "sudo pacman -S --noconfirm flatpak"
         tags: ["flatpak", "setup", "flathub"]
         safety: "high"
 
@@ -370,13 +311,6 @@ categories:
         requires: ["git", "base-devel"]
         safety: "medium"
 
-      - name: "Snap Support"
-        description: "Install Snap package manager"
-        command: "paru -S --noconfirm snapd && sudo systemctl enable --now snapd.socket"
-        tags: ["snap", "package-manager", "universal"]
-        requires: ["aur-helper"]
-        safety: "medium"
-
   troubleshooting:
     name: "Troubleshooting"
     description: "Common fixes and system repairs"
@@ -392,13 +326,13 @@ categories:
 
       - name: "Bluetooth Setup"
         description: "Enable and start Bluetooth services"
-        command: "sudo pacman -S --noconfirm bluez bluez-utils && sudo systemctl enable --now bluetooth"
+        command: "sudo systemctl enable bluetooth && sudo systemctl start bluetooth"
         tags: ["bluetooth", "wireless", "services"]
         safety: "high"
 
       - name: "Network Manager"
         description: "Enable NetworkManager for network connectivity"
-        command: "sudo pacman -S --noconfirm networkmanager && sudo systemctl enable --now NetworkManager"
+        command: "sudo systemctl enable NetworkManager && sudo systemctl start NetworkManager"
         tags: ["network", "connectivity", "manager"]
         safety: "high"
 
@@ -414,12 +348,6 @@ categories:
         tags: ["fonts", "rendering", "typography"]
         safety: "high"
 
-      - name: "Microcode Updates"
-        description: "Install CPU microcode updates (Intel/AMD)"
-        command: "if lscpu | grep -q Intel; then sudo pacman -S --noconfirm intel-ucode; elif lscpu | grep -q AMD; then sudo pacman -S --noconfirm amd-ucode; fi && sudo grub-mkconfig -o /boot/grub/grub.cfg"
-        tags: ["microcode", "cpu", "updates", "performance"]
-        safety: "medium"
-
   essential_tools:
     name: "Essential Tools"
     description: "Must-have utilities and applications"
@@ -429,7 +357,7 @@ categories:
     tools:
       - name: "File Manager Extras"
         description: "Enhanced file management tools"
-        command: "sudo pacman -S --noconfirm ark unrar p7zip unzip zip file-roller"
+        command: "sudo pacman -S --noconfirm ark unrar p7zip unzip zip"
         tags: ["archive", "compression", "file-manager"]
         safety: "high"
 
@@ -452,49 +380,6 @@ categories:
         command: "sudo pacman -S --noconfirm htop btop neofetch"
         tags: ["monitoring", "system", "performance"]
         safety: "high"
-
-      - name: "Terminal Enhancers"
-        description: "Improve terminal experience"
-        command: "sudo pacman -S --noconfirm zsh fish bat exa ripgrep fd fzf"
-        tags: ["terminal", "shell", "productivity"]
-        safety: "high"
-
-      - name: "Network Tools"
-        description: "Essential networking utilities"
-        command: "sudo pacman -S --noconfirm wget curl rsync openssh net-tools"
-        tags: ["network", "utilities", "tools"]
-        safety: "high"
-
-  desktop_environments:
-    name: "Desktop Environments"
-    description: "Additional desktop environments and window managers"
-    order: 11
-    icon: "🖼️"
-    color: "#6366F1"
-    tools:
-      - name: "GNOME Desktop"
-        description: "Complete GNOME desktop environment"
-        command: "sudo pacman -S --noconfirm gnome gnome-extra && sudo systemctl enable gdm"
-        tags: ["gnome", "desktop", "environment"]
-        safety: "low"
-
-      - name: "KDE Plasma"
-        description: "Full KDE Plasma desktop environment"
-        command: "sudo pacman -S --noconfirm plasma kde-applications && sudo systemctl enable sddm"
-        tags: ["kde", "plasma", "desktop", "environment"]
-        safety: "low"
-
-      - name: "XFCE Desktop"
-        description: "Lightweight XFCE desktop environment"
-        command: "sudo pacman -S --noconfirm xfce4 xfce4-goodies && sudo systemctl enable lightdm"
-        tags: ["xfce", "lightweight", "desktop"]
-        safety: "low"
-
-      - name: "i3 Window Manager"
-        description: "Tiling window manager with configuration"
-        command: "sudo pacman -S --noconfirm i3-wm i3status i3lock dmenu"
-        tags: ["i3", "tiling", "window-manager"]
-        safety: "medium"
 
 # Global settings
 settings:
