@@ -53,7 +53,7 @@ python main.py
 arch-appcenter-uninstall
 
 # Or online uninstaller
-curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh | bash
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh | bash -s -- --force
 ```
 
 ## 🎯 Installation Details
