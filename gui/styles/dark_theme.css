@@ -294,7 +294,7 @@ QCheckBox#toolCheckbox::indicator:checked {
     border: 1px solid #2563EB;
 }
 
-QCheckBox#toolCheckbox::indicator:hover {S
+QCheckBox#toolCheckbox::indicator:hover {
     border: 1px solid #525252;
 }
 
