@@ -19,12 +19,6 @@ categories:
         tags: ["update", "system", "pacman"]
         safety: "high"
 
-      - name: "Remove Orphans"
-        description: "Remove orphaned packages that are no longer needed"
-        command: "sudo pacman -Rns $(pacman -Qtdq) --noconfirm || echo 'No orphaned packages found'"
-        tags: ["cleanup", "orphans"]
-        safety: "medium"
-
       - name: "Update Mirrorlist"
         description: "Optimize package mirrors with reflector for faster downloads"
         command: "sudo reflector --latest 20 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist"
