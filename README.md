@@ -29,7 +29,8 @@ curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/in
 
 ### Option 1: One-Line Install (Recommended)
 ```bash
-curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh -o install.sh
+./install.sh
 ```
 
 ### Option 2: Manual Installation
@@ -53,7 +54,8 @@ python main.py
 arch-appcenter-uninstall
 
 # Or online uninstaller
-curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh | bash -s -- --force
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh -o uninstall.sh
+./uninstall.sh
 ```
 
 ## 🎯 Installation Details
