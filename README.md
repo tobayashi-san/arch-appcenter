@@ -36,6 +36,7 @@ curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/in
 ```bash
 git clone https://github.com/tobayashi-san/arch-appcenter.git
 cd arch-appcenter
+chmod +x install.sh
 ./install.sh
 ```
 
