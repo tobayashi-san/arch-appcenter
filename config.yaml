@@ -1,0 +1,505 @@
+# Arch Appcenter Configuration
+version: "2.0"
+description: "Modern configuration for Arch Linux system management"
+author: "tobayashi"
+last_updated: "2025-07-20"
+compatibility: ["arch", "manjaro", "endeavouros", "artix", "garuda", "cachyos"]
+
+categories:
+  system_maintenance:
+    name: "System Maintenance"
+    description: "Essential system maintenance and update tasks"
+    order: 1
+    icon: "🔧"
+    color: "#3B82F6"
+    tools:
+      - name: "System Update"
+        description: "Full system update with pacman"
+        command: "sudo pacman -Syu --noconfirm"
+        tags: ["update", "system", "pacman"]
+        safety: "high"
+
+      - name: "Clean Package Cache"
+        description: "Remove old cached packages to free disk space"
+        command: "sudo pacman -Sc --noconfirm"
+        tags: ["cleanup", "cache", "disk-space"]
+        safety: "medium"
+
+      - name: "Remove Orphans"
+        description: "Remove orphaned packages that are no longer needed"
+        command: "sudo pacman -Rns $(pacman -Qtdq) --noconfirm || echo 'No orphaned packages found'"
+        tags: ["cleanup", "orphans"]
+        safety: "medium"
+
+      - name: "Update Mirrorlist"
+        description: "Optimize package mirrors with reflector for faster downloads"
+        command: "sudo cp -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && sudo reflector --latest 20 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist"
+        tags: ["mirrors", "optimization", "speed"]
+        requires: ["reflector"]
+        safety: "low"
+
+      - name: "Clear System Logs"
+        description: "Clear old systemd journal logs to free space"
+        command: "sudo journalctl --vacuum-time=7d"
+        tags: ["cleanup", "logs", "systemd"]
+        safety: "medium"
+
+      - name: "Refresh Package Database"
+        description: "Update package database without upgrading packages"
+        command: "sudo pacman -Sy"
+        tags: ["update", "database", "refresh"]
+        safety: "high"
+
+      - name: "Check System Health"
+        description: "Run comprehensive system health checks"
+        command: "sudo pacman -Dk && sudo pacman -Qk 2>/dev/null | grep -v ' 0 missing files' || echo 'System integrity check completed'"
+        tags: ["check", "health", "integrity"]
+        safety: "high"
+
+  graphics:
+    name: "Graphics Drivers"
+    description: "Install and configure graphics drivers for optimal performance"
+    order: 2
+    icon: "🖥️"
+    color: "#10B981"
+    tools:
+      - name: "NVIDIA Open Drivers"
+        description: "Open-source NVIDIA drivers (recommended for RTX 20 series and newer)"
+        command: "sudo pacman -S --noconfirm nvidia-open nvidia-utils lib32-nvidia-utils nvidia-settings"
+        tags: ["nvidia", "drivers", "open-source", "rtx"]
+        requires: ["nvidia-hardware"]
+        safety: "medium"
+
+      - name: "NVIDIA Proprietary"
+        description: "Proprietary NVIDIA drivers (for GTX series and older)"
+        command: "sudo pacman -S --noconfirm nvidia nvidia-utils lib32-nvidia-utils nvidia-settings"
+        tags: ["nvidia", "drivers", "proprietary", "gtx"]
+        requires: ["nvidia-hardware"]
+        safety: "medium"
+
+      - name: "AMD Drivers"
+        description: "AMD graphics drivers with Vulkan support"
+        command: "sudo pacman -S --noconfirm mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon libva-mesa-driver lib32-libva-mesa-driver"
+        tags: ["amd", "drivers", "mesa", "vulkan", "radeon"]
+        requires: ["amd-hardware"]
+        safety: "medium"
+
+      - name: "Intel Graphics"
+        description: "Intel integrated graphics drivers with VA-API support"
+        command: "sudo pacman -S --noconfirm mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver libva-intel-driver"
+        tags: ["intel", "drivers", "integrated", "vaapi"]
+        requires: ["intel-hardware"]
+        safety: "medium"
+
+      - name: "NVIDIA CUDA"
+        description: "NVIDIA CUDA toolkit for GPU computing"
+        command: "sudo pacman -S --noconfirm cuda cudnn"
+        tags: ["nvidia", "cuda", "gpu-computing", "ai"]
+        requires: ["nvidia-hardware"]
+        safety: "low"
+
+  development:
+    name: "Development Tools"
+    description: "Essential development and programming tools"
+    order: 3
+    icon: "💻"
+    color: "#8B5CF6"
+    tools:
+      - name: "Visual Studio Code"
+        description: "Popular code editor from Microsoft"
+        command: "paru -S --noconfirm visual-studio-code-bin"
+        tags: ["editor", "ide", "microsoft"]
+        requires: ["aur-helper"]
+        safety: "high"
+
+      - name: "Docker"
+        description: "Container platform for development and deployment"
+        command: "sudo pacman -S --noconfirm docker docker-compose docker-buildx && sudo systemctl enable docker && sudo usermod -aG docker $USER"
+        tags: ["docker", "containers", "devops"]
+        safety: "medium"
+
+      - name: "Python Development"
+        description: "Python interpreter and development tools"
+        command: "sudo pacman -S --noconfirm python python-pip python-virtualenv python-poetry ipython jupyter-notebook"
+        tags: ["python", "pip", "development", "jupyter"]
+        safety: "high"
+
+      - name: "Node.js Development"
+        description: "Node.js runtime and package managers"
+        command: "sudo pacman -S --noconfirm nodejs npm yarn"
+        tags: ["nodejs", "npm", "yarn", "javascript"]
+        safety: "high"
+
+      - name: "Rust Development"
+        description: "Rust programming language and tools"
+        command: "sudo pacman -S --noconfirm rustup && rustup default stable"
+        tags: ["rust", "cargo", "programming"]
+        safety: "high"
+
+      - name: "Git & Development Tools"
+        description: "Git version control and essential development utilities"
+        command: "sudo pacman -S --noconfirm git git-lfs github-cli base-devel cmake ninja meson"
+        tags: ["git", "vcs", "build-tools"]
+        safety: "high"
+
+      - name: "Virtual Machine Setup"
+        description: "Complete virtualization stack with Virt-Manager"
+        command: "sudo pacman -S --noconfirm qemu-full virt-manager virt-install edk2-ovmf libvirt dnsmasq bridge-utils libosinfo swtpm guestfs-tools virt-viewer && sudo systemctl enable --now libvirtd && sudo usermod -aG libvirt,kvm $USER"
+        tags: ["virtualization", "kvm", "libvirt", "qemu"]
+        safety: "medium"
+
+  multimedia:
+    name: "Multimedia"
+    description: "Audio, video and multimedia applications"
+    order: 4
+    icon: "🎵"
+    color: "#F59E0B"
+    tools:
+      - name: "VLC Media Player"
+        description: "Versatile multimedia player that plays most formats"
+        command: "sudo pacman -S --noconfirm vlc"
+        tags: ["video", "audio", "player", "codec"]
+        safety: "high"
+
+      - name: "GIMP"
+        description: "GNU Image Manipulation Program for photo editing"
+        command: "sudo pacman -S --noconfirm gimp gimp-help-en"
+        tags: ["image", "photo", "editing", "graphics"]
+        safety: "high"
+
+      - name: "Blender"
+        description: "3D creation suite for modeling, animation, and rendering"
+        command: "sudo pacman -S --noconfirm blender"
+        tags: ["3d", "modeling", "animation", "rendering"]
+        safety: "high"
+
+      - name: "OBS Studio"
+        description: "Open-source streaming and recording software"
+        command: "sudo pacman -S --noconfirm obs-studio"
+        tags: ["streaming", "recording", "obs", "video"]
+        safety: "high"
+
+      - name: "Audacity"
+        description: "Audio editor and recorder"
+        command: "sudo pacman -S --noconfirm audacity"
+        tags: ["audio", "editing", "recording"]
+        safety: "high"
+
+      - name: "Spotify"
+        description: "Music streaming service client"
+        command: "flatpak install -y flathub com.spotify.Client"
+        tags: ["music", "streaming", "spotify"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Discord"
+        description: "Voice and text chat for gaming and communities"
+        command: "flatpak install -y flathub com.discordapp.Discord"
+        tags: ["voice", "chat", "discord", "gaming"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Zen Browser"
+        description: "Privacy-focused web browser with beautiful design"
+        command: "flatpak install --noninteractive flathub app.zen_browser.zen"
+        tags: ["browser", "web", "privacy", "zen"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Multimedia Codecs"
+        description: "Essential codecs for media playback"
+        command: "sudo pacman -S --noconfirm gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-libav ffmpeg"
+        tags: ["codecs", "multimedia", "ffmpeg"]
+        safety: "high"
+
+  gaming:
+    name: "Gaming"
+    description: "Gaming platforms and utilities"
+    order: 5
+    icon: "🎮"
+    color: "#EF4444"
+    tools:
+      - name: "Steam"
+        description: "Popular gaming platform from Valve"
+        command: "flatpak install -y flathub com.valvesoftware.Steam"
+        tags: ["gaming", "steam", "valve"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Lutris"
+        description: "Gaming client for managing games from multiple sources"
+        command: "flatpak install -y flathub net.lutris.Lutris"
+        tags: ["gaming", "lutris", "wine", "emulation"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Wine & Winetricks"
+        description: "Windows compatibility layer for running Windows games"
+        command: "sudo pacman -S --noconfirm wine wine-mono wine-gecko winetricks"
+        tags: ["wine", "windows", "compatibility"]
+        safety: "medium"
+
+      - name: "ProtonPlus"
+        description: "Advanced Proton version manager for Steam"
+        command: "flatpak install -y flathub com.vysp3r.ProtonPlus"
+        tags: ["gaming", "proton", "steam", "optimization"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Gaming Performance"
+        description: "Install gaming performance tools and drivers"
+        command: "sudo pacman -S --noconfirm gamemode lib32-gamemode gamescope mangohud lib32-mangohud"
+        tags: ["gaming", "performance", "gamemode", "mangohud"]
+        safety: "medium"
+
+      - name: "RetroArch"
+        description: "Multi-platform emulator frontend"
+        command: "sudo pacman -S --noconfirm retroarch retroarch-assets-ozone retroarch-assets-xmb"
+        tags: ["emulation", "retro", "gaming"]
+        safety: "high"
+
+  productivity:
+    name: "Productivity"
+    description: "Office applications and productivity tools"
+    order: 6
+    icon: "📄"
+    color: "#06B6D4"
+    tools:
+      - name: "LibreOffice"
+        description: "Complete office suite (Writer, Calc, Impress, etc.)"
+        command: "sudo pacman -S --noconfirm libreoffice-fresh hunspell hunspell-en_us hyphen hyphen-en"
+        tags: ["office", "documents", "spreadsheet", "presentation"]
+        safety: "high"
+
+      - name: "OnlyOffice"
+        description: "Modern office suite with Microsoft Office compatibility"
+        command: "flatpak install -y flathub org.onlyoffice.desktopeditors"
+        tags: ["office", "documents", "spreadsheet", "presentation", "microsoft"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Thunderbird"
+        description: "Email client from Mozilla"
+        command: "sudo pacman -S --noconfirm thunderbird"
+        tags: ["email", "client", "mozilla"]
+        safety: "high"
+
+      - name: "Proton Mail"
+        description: "Secure email client that protects your privacy"
+        command: "flatpak install -y flathub me.proton.Mail"
+        tags: ["mail", "communication", "proton", "privacy"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Notion"
+        description: "All-in-one workspace for notes, docs, and projects"
+        command: "flatpak install -y flathub notion-app-enhanced"
+        tags: ["notes", "productivity", "workspace"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Obsidian"
+        description: "Knowledge management and note-taking app"
+        command: "flatpak install -y flathub md.obsidian.Obsidian"
+        tags: ["notes", "knowledge", "markdown"]
+        requires: ["flatpak"]
+        safety: "high"
+
+  security:
+    name: "Security & Privacy"
+    description: "Security tools and privacy applications"
+    order: 7
+    icon: "🔐"
+    color: "#DC2626"
+    tools:
+      - name: "UFW Firewall"
+        description: "Uncomplicated Firewall for basic network protection"
+        command: "sudo pacman -S --noconfirm ufw && sudo ufw enable && sudo ufw default deny incoming && sudo ufw default allow outgoing"
+        tags: ["firewall", "security", "network"]
+        safety: "medium"
+
+      - name: "Pika Backup"
+        description: "Simple backup utility with encryption support"
+        command: "flatpak install -y flathub org.gnome.World.PikaBackup"
+        tags: ["backup", "encryption", "data-protection"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "KeePassXC"
+        description: "Secure password manager"
+        command: "sudo pacman -S --noconfirm keepassxc"
+        tags: ["password", "security", "manager"]
+        safety: "high"
+
+      - name: "Tor Browser"
+        description: "Anonymous web browsing with Tor network"
+        command: "sudo pacman -S --noconfirm torbrowser-launcher"
+        tags: ["privacy", "anonymity", "tor", "browser"]
+        safety: "high"
+
+      - name: "ClamAV Antivirus"
+        description: "Open-source antivirus scanner"
+        command: "sudo pacman -S --noconfirm clamav clamtk && sudo freshclam"
+        tags: ["antivirus", "security", "scanner"]
+        safety: "medium"
+
+  package_managers:
+    name: "Package Managers"
+    description: "AUR helpers and package management tools"
+    order: 8
+    icon: "📦"
+    color: "#7C3AED"
+    tools:
+      - name: "Setup Flatpak"
+        description: "Install Flatpak and add Flathub repository"
+        command: "sudo pacman -S --noconfirm flatpak && flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+        tags: ["flatpak", "setup", "flathub"]
+        safety: "high"
+
+      - name: "Install Yay"
+        description: "Yet Another Yaourt - Popular AUR helper written in Go"
+        command: "sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm && cd ~ && rm -rf /tmp/yay"
+        tags: ["aur", "helper", "yay", "package-manager"]
+        requires: ["git", "base-devel"]
+        safety: "medium"
+
+      - name: "Install Paru"
+        description: "Feature-packed AUR helper written in Rust"
+        command: "sudo pacman -S --needed --noconfirm base-devel git && git clone https://aur.archlinux.org/paru.git /tmp/paru && cd /tmp/paru && makepkg -si --noconfirm && cd ~ && rm -rf /tmp/paru"
+        tags: ["aur", "helper", "paru", "package-manager", "rust"]
+        requires: ["git", "base-devel"]
+        safety: "medium"
+
+      - name: "Snap Support"
+        description: "Install Snap package manager"
+        command: "paru -S --noconfirm snapd && sudo systemctl enable --now snapd.socket"
+        tags: ["snap", "package-manager", "universal"]
+        requires: ["aur-helper"]
+        safety: "medium"
+
+  troubleshooting:
+    name: "Troubleshooting"
+    description: "Common fixes and system repairs"
+    order: 9
+    icon: "🔧"
+    color: "#F97316"
+    tools:
+      - name: "Audio Fixes"
+        description: "Install audio firmware and restart audio services"
+        command: "sudo pacman -S --noconfirm sof-firmware alsa-firmware && sudo systemctl restart pipewire pipewire-pulse wireplumber"
+        tags: ["audio", "firmware", "pipewire", "alsa"]
+        safety: "medium"
+
+      - name: "Bluetooth Setup"
+        description: "Enable and start Bluetooth services"
+        command: "sudo pacman -S --noconfirm bluez bluez-utils && sudo systemctl enable --now bluetooth"
+        tags: ["bluetooth", "wireless", "services"]
+        safety: "high"
+
+      - name: "Network Manager"
+        description: "Enable NetworkManager for network connectivity"
+        command: "sudo pacman -S --noconfirm networkmanager && sudo systemctl enable --now NetworkManager"
+        tags: ["network", "connectivity", "manager"]
+        safety: "high"
+
+      - name: "Printer Support"
+        description: "Install and configure printing system"
+        command: "sudo pacman -S --noconfirm cups cups-pdf && sudo systemctl enable --now cups"
+        tags: ["printing", "cups", "drivers"]
+        safety: "medium"
+
+      - name: "Font Rendering"
+        description: "Improve font rendering and install common fonts"
+        command: "sudo pacman -S --noconfirm ttf-dejavu ttf-liberation noto-fonts noto-fonts-emoji ttf-hack"
+        tags: ["fonts", "rendering", "typography"]
+        safety: "high"
+
+      - name: "Microcode Updates"
+        description: "Install CPU microcode updates (Intel/AMD)"
+        command: "if lscpu | grep -q Intel; then sudo pacman -S --noconfirm intel-ucode; elif lscpu | grep -q AMD; then sudo pacman -S --noconfirm amd-ucode; fi && sudo grub-mkconfig -o /boot/grub/grub.cfg"
+        tags: ["microcode", "cpu", "updates", "performance"]
+        safety: "medium"
+
+  essential_tools:
+    name: "Essential Tools"
+    description: "Must-have utilities and applications"
+    order: 10
+    icon: "🛠️"
+    color: "#059669"
+    tools:
+      - name: "File Manager Extras"
+        description: "Enhanced file management tools"
+        command: "sudo pacman -S --noconfirm ark unrar p7zip unzip zip file-roller"
+        tags: ["archive", "compression", "file-manager"]
+        safety: "high"
+
+      - name: "Gear Lever"
+        description: "AppImage integration and management"
+        command: "flatpak install -y flathub it.mijorus.gearlever"
+        tags: ["appimage", "integration", "applications"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "Warehouse"
+        description: "Flatpak package manager GUI"
+        command: "flatpak install -y flathub io.github.flattool.Warehouse"
+        tags: ["flatpak", "gui", "package-manager"]
+        requires: ["flatpak"]
+        safety: "high"
+
+      - name: "System Monitor"
+        description: "Advanced system monitoring tools"
+        command: "sudo pacman -S --noconfirm htop btop neofetch"
+        tags: ["monitoring", "system", "performance"]
+        safety: "high"
+
+      - name: "Terminal Enhancers"
+        description: "Improve terminal experience"
+        command: "sudo pacman -S --noconfirm zsh fish bat exa ripgrep fd fzf"
+        tags: ["terminal", "shell", "productivity"]
+        safety: "high"
+
+      - name: "Network Tools"
+        description: "Essential networking utilities"
+        command: "sudo pacman -S --noconfirm wget curl rsync openssh net-tools"
+        tags: ["network", "utilities", "tools"]
+        safety: "high"
+
+  desktop_environments:
+    name: "Desktop Environments"
+    description: "Additional desktop environments and window managers"
+    order: 11
+    icon: "🖼️"
+    color: "#6366F1"
+    tools:
+      - name: "GNOME Desktop"
+        description: "Complete GNOME desktop environment"
+        command: "sudo pacman -S --noconfirm gnome gnome-extra && sudo systemctl enable gdm"
+        tags: ["gnome", "desktop", "environment"]
+        safety: "low"
+
+      - name: "KDE Plasma"
+        description: "Full KDE Plasma desktop environment"
+        command: "sudo pacman -S --noconfirm plasma kde-applications && sudo systemctl enable sddm"
+        tags: ["kde", "plasma", "desktop", "environment"]
+        safety: "low"
+
+      - name: "XFCE Desktop"
+        description: "Lightweight XFCE desktop environment"
+        command: "sudo pacman -S --noconfirm xfce4 xfce4-goodies && sudo systemctl enable lightdm"
+        tags: ["xfce", "lightweight", "desktop"]
+        safety: "low"
+
+      - name: "i3 Window Manager"
+        description: "Tiling window manager with configuration"
+        command: "sudo pacman -S --noconfirm i3-wm i3status i3lock dmenu"
+        tags: ["i3", "tiling", "window-manager"]
+        safety: "medium"
+
+# Global settings
+settings:
+  confirmation_required: true
+  backup_configs: true
+  log_commands: true
+  parallel_execution: false
+  max_retries: 3
