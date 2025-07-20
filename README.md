@@ -1,89 +1,116 @@
+# 🚀 Arch Appcenter
+
 A modern, native GUI application for Arch-based Linux distributions that provides a centralized interface for system configuration and maintenance. Built with PyQt6 and designed specifically for Arch Linux, EndeavourOS, Manjaro, and other Arch-based distributions.
+
+## ⚡ Quick Install
+
+```bash
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh | bash
+```
+
+**No root required!** Installs to user directories (`~/.local/`).
 
 ## ✨ Features
 
-- **🎯 Centralized Configuration**: Manage system tools and configurations from one interface
+- **🎯 User-Friendly Installation**: No root privileges required
 - **📦 Multi-Package Manager Support**: Works with pacman, flatpak, and AUR helpers (yay/paru)
-- **🌐 GitHub-Based Configuration**: Automatically downloads tool configurations from GitHub
-- **🎨 Adaptive Theming**: Automatically detects and adapts to your system theme (KDE, GNOME, XFCE)
+- **🌐 GitHub-Based Configuration**: Automatically downloads tool configurations
+- **🎨 Adaptive Theming**: Automatically detects and adapts to your system theme
 - **⚡ Batch Operations**: Execute multiple tools and configurations at once
-- **📋 Command History**: Track and review executed commands
 - **🔍 Smart Search**: Find tools and configurations quickly
 - **🛡️ Safety Features**: Built-in command validation and confirmation dialogs
 - **📊 System Status**: Real-time system information and dependency checking
 
-  
-##  Screenshots
-<img width="1407" height="927" alt="image" src="https://github.com/user-attachments/assets/a290b93d-3660-44d7-91db-950c15f15f50" />
+## 🖥️ Screenshots
 
-## 🚀 Quick Start
+![Arch Appcenter Screenshot](https://github.com/user-attachments/assets/a290b93d-3660-44d7-91db-950c15f15f50)
 
-### Prerequisites
+## 📦 Installation Options
 
-- Arch Linux or Arch-based distribution (EndeavourOS, Manjaro, etc.)
-- Python 3.9 or higher
-- PyQt6
+### Option 1: One-Line Install (Recommended)
+```bash
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh | bash
+```
 
-### Installation
-
-1. **Clone the repository:**
+### Option 2: Manual Installation
 ```bash
 git clone https://github.com/tobayashi-san/arch-appcenter.git
 cd arch-appcenter
+./install.sh
 ```
 
-2. **Install Python dependencies:**
+### Option 3: Direct Run (Development)
 ```bash
-pip install -r requirements.txt
-```
-
-3. **Run the application:**
-```bash
+git clone https://github.com/tobayashi-san/arch-appcenter.git
+cd arch-appcenter
 python main.py
 ```
 
-## 📦 Dependencies
-
-### Required Python Packages
-- PyQt6 >= 6.5.0
-- requests >= 2.31.0
-- PyYAML >= 6.0
-
-### System Dependencies (Automatically Checked)
-- `pacman` - Arch package manager
-- `sudo` - Superuser privileges
-- `flatpak` (optional) - Universal package manager
-- `yay` or `paru` (optional) - AUR helpers
-- `reflector` (optional) - Mirror optimization
-- `git` (optional) - Version control
-
-## 🛠️ Usage
-
-### Basic Operation
-
-1. **Launch the application:**
-```bash
-python main.py
-```
-
-2. **Browse categories** in the left sidebar
-3. **Select tools** you want to execute
-4. **Use batch execution** for multiple tools
-5. **Monitor progress** in the output console
-
-### Command Line Options
+## 🗑️ Uninstallation
 
 ```bash
-python main.py --help
+# If installed via installer
+arch-appcenter-uninstall
 
-Options:
-  --check-deps     Check system dependencies and exit
-  --debug         Enable debug output
-  --reset-config  Reset configuration cache
-  --config-url    Use custom configuration URL
+# Or online uninstaller
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/uninstall.sh | bash
 ```
 
-### Configuration Categories
+## 🎯 Installation Details
+
+- **Install Location**: `~/.local/share/arch-appcenter/`
+- **Executable**: `~/.local/bin/arch-appcenter`
+- **Desktop Entry**: `~/.local/share/applications/`
+- **User Data**: `~/.local/share/arch-appcenter/`
+- **Configuration**: `~/.config/arch-appcenter/`
+
+## 🔧 Usage
+
+### Terminal Commands
+```bash
+# Start GUI
+arch-appcenter
+
+# Check dependencies
+arch-appcenter --check-deps
+
+# Reset configuration
+arch-appcenter --reset-config
+
+# Show help
+arch-appcenter --help
+
+# Uninstall
+arch-appcenter-uninstall
+```
+
+### Desktop Integration
+- **Application Menu**: Search for "Arch Appcenter"
+- **Desktop Shortcut**: Double-click desktop icon
+- **Right-click Actions**: Check deps, refresh config, uninstall
+
+## 📋 System Requirements
+
+### Required
+- Arch Linux or Arch-based distribution
+- Python 3.9+
+- PyQt6
+- requests
+- PyYAML
+
+### Automatic Installation
+The installer automatically installs missing dependencies:
+```bash
+sudo pacman -S python python-pyqt6 python-requests python-yaml
+```
+
+### Optional (Enhanced Features)
+- `flatpak` - Universal package manager
+- `yay` or `paru` - AUR helpers
+- `reflector` - Mirror optimization
+- `git` - Version control
+
+## 🛠️ Configuration Categories
 
 - **🔧 System Maintenance**: Updates, cleanup, mirror optimization
 - **🖥️ Graphics Drivers**: NVIDIA, AMD, Intel driver installation
@@ -95,80 +122,42 @@ Options:
 - **📦 Package Managers**: AUR helpers, Flatpak setup
 - **🔧 Troubleshooting**: Common system fixes
 
-## ⚙️ Configuration
-
-The application uses a YAML configuration file automatically downloaded from GitHub. The configuration defines available tools, commands, and categories.
-
-### Custom Configuration
-
-You can use a custom configuration source:
-
-```bash
-python main.py --config-url "https://your-domain.com/custom-config.yaml"
-```
-
-### Configuration Format
-
-```yaml
-categories:
-  system_maintenance:
-    name: "System Maintenance"
-    description: "Essential system maintenance tasks"
-    order: 1
-    icon: "🔧"
-    tools:
-      - name: "System Update"
-        description: "Full system update with pacman"
-        command: "sudo pacman -Syu --noconfirm"
-        tags: ["update", "system"]
-        requires: ["pacman"]
-```
-
 ## 🎨 Theming
 
 The application automatically detects your system theme:
-
 - **KDE Plasma**: Reads `kdeglobals` configuration
 - **GNOME**: Uses `gsettings` for theme detection
-
-### Manual Theme Override
-
-Themes are located in `gui/styles/`:
-- `styles.css` - Base layout and structure
-- `dark_theme.css` - Dark theme colors
-- `light_theme.css` - Light theme colors
+- **XFCE**: Reads `xfconf` configuration
+- **Fallback**: Qt palette detection
 
 ## 🔧 Development
 
 ### Project Structure
-
 ```
 arch-appcenter/
 ├── main.py                 # Application entry point
+├── install.sh              # User installer
+├── uninstall.sh            # User uninstaller
 ├── core/                   # Backend components
-│   ├── config_manager.py   # Configuration handling
-│   ├── command_executor.py # Command execution
-│   └── dependency_check.py # System validation
 ├── gui/                    # User interface
-│   ├── main_window.py      # Main application window
-│   ├── styles/             # CSS themes
-│   └── widgets/            # Custom widgets
-├── data/                   # Configuration cache
-└── logs/                   # Application logs
+├── config.yaml             # Tool configuration
+└── requirements.txt        # Dependencies
 ```
 
-### Contributing
+### Local Development
+```bash
+git clone https://github.com/tobayashi-san/arch-appcenter.git
+cd arch-appcenter
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes
-4. Test thoroughly on Arch Linux
-5. Submit a pull request
+# Install dependencies
+sudo pacman -S python-pyqt6 python-requests python-yaml
+
+# Run directly
+python main.py --debug
+```
 
 ### Adding New Tools
-
-To add new tools, modify the configuration YAML:
-
+Modify `config.yaml` to add new tools:
 ```yaml
 your_category:
   name: "Your Category"
@@ -177,58 +166,57 @@ your_category:
       description: "Tool description"
       command: "your-command-here"
       tags: ["tag1", "tag2"]
-      requires: ["dependency"]
 ```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-**Application won't start:**
+**Installation fails:**
 ```bash
-# Check Python version
-python --version
-
 # Check dependencies
-python main.py --check-deps
+arch-appcenter --check-deps
 
-# Run in debug mode
-python main.py --debug
+# Manual dependency install
+sudo pacman -S python-pyqt6 python-requests python-yaml
 ```
 
+**PATH issues:**
+```bash
+# Add to shell configuration
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+**Permission errors:**
+- Never run as root - this is a user installation
+- Check if `~/.local/bin` exists and is writable
+
 ### Logs
+- Application logs: `~/.local/share/arch-appcenter/logs/`
+- Error logs include timestamp and debug information
 
-Application logs are stored in the `logs/` directory:
-- Error logs: `error_YYYYMMDD_HHMMSS.log`
-- Debug output when using `--debug` flag
+## 🤝 Contributing
 
-## 🤝 Support
-
-- **GitHub Issues**: [Report bugs and request features](https://github.com/tobayashi-san/arch-appcenter/issues)
-- **Arch Forums**: Community support
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make your changes
+4. Test on Arch Linux
+5. Submit a pull request
 
 ## 📄 License
 
-This project is open source and available under the MIT License. You are free to use, modify, and distribute this software as long as it remains open source.
+This project is open source and available under the MIT License.
 
-```
-MIT License
+## 📊 Support
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, subject to the following conditions:
+- **GitHub Issues**: [Report bugs and request features](https://github.com/tobayashi-san/arch-appcenter/issues)
+- **Discussions**: [Community support and ideas](https://github.com/tobayashi-san/arch-appcenter/discussions)
 
-- The software must remain open source
-- Derivative works must also be open source
-- Include the original license notice
-```
-
-
-## 📊 Stats
+## 🎖️ Stats
 
 ![GitHub stars](https://img.shields.io/github/stars/tobayashi-san/arch-appcenter)
 ![GitHub forks](https://img.shields.io/github/forks/tobayashi-san/arch-appcenter)
 ![GitHub issues](https://img.shields.io/github/issues/tobayashi-san/arch-appcenter)
 ![Python version](https://img.shields.io/badge/python-3.9+-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-
