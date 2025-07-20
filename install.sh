@@ -86,17 +86,32 @@ check_dependencies() {
         missing_deps+=("python")
     fi
 
-    # Check Python modules
-    python_modules=("PyQt6" "requests" "yaml")
-    for module in "${python_modules[@]}"; do
-        if ! python3 -c "import ${module,,}" 2>/dev/null; then
-            case $module in
-                "PyQt6") missing_deps+=("python-pyqt6") ;;
-                "requests") missing_deps+=("python-requests") ;;
-                "yaml") missing_deps+=("python-yaml") ;;
-            esac
-        fi
-    done
+    # Check Python modules with correct import names
+    print_status "Prüfe Python-Module..."
+
+    # PyQt6 check
+    if ! python3 -c "import PyQt6.QtWidgets" 2>/dev/null; then
+        missing_deps+=("python-pyqt6")
+        print_status "PyQt6.QtWidgets nicht gefunden"
+    else
+        print_status "✅ PyQt6 verfügbar"
+    fi
+
+    # requests check
+    if ! python3 -c "import requests" 2>/dev/null; then
+        missing_deps+=("python-requests")
+        print_status "requests nicht gefunden"
+    else
+        print_status "✅ requests verfügbar"
+    fi
+
+    # yaml check
+    if ! python3 -c "import yaml" 2>/dev/null; then
+        missing_deps+=("python-yaml")
+        print_status "yaml nicht gefunden"
+    else
+        print_status "✅ yaml verfügbar"
+    fi
 
     if [ ${#missing_deps[@]} -gt 0 ]; then
         print_error "Fehlende Abhängigkeiten: ${missing_deps[*]}"
@@ -413,10 +428,9 @@ show_completion_info() {
     echo "   • Desktop: $DESKTOP_FILE"
     echo
     echo "🚀 Verwendung:"
-    echo "   • Terminal: '$APP_NAME' (falls PATH konfiguriert)"
-    echo "   • Direkt: '$BIN_LINK'"
     echo "   • Anwendungsmenü: Suche nach 'Arch Appcenter'"
     echo "   • Desktop: Doppelklick auf Verknüpfung"
+    echo "   • Terminal: '$BIN_LINK'"
     echo
     echo "🔧 Verfügbare Kommandos:"
     echo "   • $APP_NAME --check-deps       - Prüfe Abhängigkeiten"
@@ -442,7 +456,6 @@ main() {
     create_desktop_integration
     create_uninstall_script
     create_kde_desktop_shortcut
-    check_path
     run_post_install
     show_completion_info
 }
