@@ -1,4 +1,4 @@
-# 🔧 Arch Linux Configuration Tool
+<img width="1407" height="927" alt="image" src="https://github.com/user-attachments/assets/a5672328-8fb9-4fb7-907d-eccfff6ea787" /># 🔧 Arch Linux Configuration Tool
 
 A modern, native GUI application for Arch-based Linux distributions that provides a centralized interface for system configuration and maintenance. Built with PyQt6 and designed specifically for Arch Linux, EndeavourOS, Manjaro, and other Arch-based distributions.
 
@@ -14,6 +14,9 @@ A modern, native GUI application for Arch-based Linux distributions that provide
 - **🛡️ Safety Features**: Built-in command validation and confirmation dialogs
 - **📊 System Status**: Real-time system information and dependency checking
 
+  
+##  Screenshots
+<img width="1407" height="927" alt="image" src="https://github.com/user-attachments/assets/a290b93d-3660-44d7-91db-950c15f15f50" />
 
 ## 🚀 Quick Start
 
