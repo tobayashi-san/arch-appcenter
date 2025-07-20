@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Arch Linux Configuration Tool - Main Entry Point
-Überarbeitet mit verbesserter Fehlerbehandlung und Initialisierung
-"""
-
 import sys
 import os
 import argparse
