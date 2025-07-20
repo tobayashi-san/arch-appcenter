@@ -23,7 +23,8 @@ curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/in
 
 ## 🖥️ Screenshots
 
-![Arch Appcenter Screenshot](https://github.com/user-attachments/assets/a290b93d-3660-44d7-91db-950c15f15f50)
+<img width="1422" height="950" alt="image" src="https://github.com/user-attachments/assets/3f630223-db2e-4fe2-852d-8693460cd122" />
+
 
 ## 📦 Installation Options
 
