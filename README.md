@@ -5,7 +5,8 @@ A modern, native GUI application for Arch-based Linux distributions that provide
 ## ⚡ Quick Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/tobayashi-san/arch-appcenter/main/install.sh -o install.sh
+./install.sh
 ```
 
 **No root required!** Installs to user directories (`~/.local/`).
