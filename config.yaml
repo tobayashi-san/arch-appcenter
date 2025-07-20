@@ -27,7 +27,7 @@ categories:
 
       - name: "Update Mirrorlist"
         description: "Optimize package mirrors with reflector for faster downloads"
-        command: "sudo cp -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak && sudo reflector --latest 20 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist"
+        command: "sudo reflector --latest 20 --protocol https --sort rate --verbose --save /etc/pacman.d/mirrorlist"
         tags: ["mirrors", "optimization", "speed"]
         requires: ["reflector"]
         safety: "low"
