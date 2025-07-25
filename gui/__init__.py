@@ -1,14 +1,25 @@
-def safe_import(module_name, class_name):
-    """Sicherer Import mit Fallback auf None"""
-    try:
-        module = __import__(f".{module_name}", package=__name__, fromlist=[class_name])
-        return getattr(module, class_name)
-    except (ImportError, AttributeError) as e:
-        print(f"⚠️ Widget '{class_name}' from '{module_name}' not available: {e}")
-        return None
+"""
+GUI Widgets Package - Simple Version
+"""
 
-# Sichere Imports aller Widgets
-CategoryWidget = safe_import('category_widget', 'CategoryWidget')
-ToolCard = safe_import('category_widget', 'ToolCard')
-StatusWidget = safe_import('status_widget', 'StatusWidget')
-CommandOutputWidget = safe_import('command_output_widget', 'CommandOutputWidget')
+# Simple imports without dynamic loading
+try:
+    from .widgets.category_widget import CategoryWidget, ToolCard
+except ImportError as e:
+    print(f"⚠️ CategoryWidget not available: {e}")
+    CategoryWidget = None
+    ToolCard = None
+
+try:
+    from .widgets.status_widget import StatusWidget
+except ImportError as e:
+    print(f"⚠️ StatusWidget not available: {e}")
+    StatusWidget = None
+
+try:
+    from .widgets.command_output_widget import CommandOutputWidget
+except ImportError as e:
+    print(f"⚠️ CommandOutputWidget not available: {e}")
+    CommandOutputWidget = None
+
+__all__ = ['CategoryWidget', 'ToolCard', 'StatusWidget', 'CommandOutputWidget']
