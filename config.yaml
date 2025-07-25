@@ -375,6 +375,13 @@ categories:
         tags: ["monitoring", "system", "performance"]
         safety: "high"
 
+      - name: "Task Manager | Mission Center"
+        description: "A task manager"
+        command: "flatpak install flathub io.missioncenter.MissionCenter"
+        tags: ["monitoring", "system", "performance"]
+        requires: ["flatpak"]
+        safety: "high"
+
 # Global settings
 settings:
   confirmation_required: true
