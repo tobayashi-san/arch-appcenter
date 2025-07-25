@@ -377,7 +377,7 @@ categories:
 
       - name: "Task Manager | Mission Center"
         description: "A task manager"
-        command: "flatpak install flathub io.missioncenter.MissionCenter"
+        command: "flatpak install -y flathub io.missioncenter.MissionCenter"
         tags: ["monitoring", "system", "performance"]
         requires: ["flatpak"]
         safety: "high"
