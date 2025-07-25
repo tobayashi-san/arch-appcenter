@@ -199,6 +199,13 @@ categories:
         tags: ["gaming", "performance", "gamemode", "mangohud"]
         safety: "medium"
         
+      - name: "LACT"
+        description: "GPU overclocking utility"
+        command: "flatpak install -y flathub io.github.ilya_zlobintsev.LACT"
+        tags: ["gaming", "gpu", "overclock", "optimization"]
+        requires: ["flatpak"]
+        safety: "high"
+
   productivity:
     name: "Productivity"
     description: "Office applications and productivity tools"
